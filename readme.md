@@ -33,7 +33,7 @@ $ npm run dev
 
 ## the issue
 
-react-joyride calculates tip position relative to body
+When positioning an element absolutely, like the tip below, it's position will be set relative to it's offsetParent. The body element is the top most offsetParent. react-joyride calculates tip position relative to body, this is fine if we don't have any elements wrapping the tip or target that have `position: absolute|relative;`.
 
 ```
 body < offset parent
