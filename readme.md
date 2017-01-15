@@ -35,6 +35,7 @@ $ npm run dev
 
 react-joyride calculates tip position relative to body
 
+```
 body < offset parent
 +------------------------+
 | <Joyride />            |
@@ -46,9 +47,11 @@ body < offset parent
 | |target        |       |
 | +--------------+       |
 +------------------------+
+```
 
 We need to calculate tip position based on an offset parent common to both joyride and our target.
 
+```
 body
 +-------------------------+
 |  #wm997 < offset parent |
@@ -61,6 +64,7 @@ body
 | | +--------------+  |   |
 | +-------------------+   |
 +-------------------------+
+```
 
 ## future stuff
 
