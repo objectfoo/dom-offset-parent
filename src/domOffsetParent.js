@@ -23,6 +23,7 @@ var domOffset = {
 global.domOffset = domOffset;
 module.exports = domOffset;
 
+// get offset parents for an element all the way up to root
 function parentsFor(el) {
 	var parents = [];
 	while (el.offsetParent !== null) {
@@ -33,6 +34,7 @@ function parentsFor(el) {
 	return parents.length > 0 ? parents : null;
 }
 
+// create array of offsetParent elements common to 2 elements
 function commonParentsFor(target, relatedTarget) {
 	var targetParents = parentsFor(target)
 	var relatedParent = relatedTarget.offsetParent;
@@ -48,6 +50,8 @@ function commonParentsFor(target, relatedTarget) {
 	return commonParents.length > 0 ? commonParents : null;
 }
 
+// calculate x, and y distance of target from offsetParent common to provided
+// elements
 function distToCommonOffsetParent(target, relatedTarget) {
 	// list of parents commont to both traget and relatedTarget
 	var commonParents = commonParentsFor(target, relatedTarget);
@@ -56,10 +60,11 @@ function distToCommonOffsetParent(target, relatedTarget) {
 	elements.unshift(target); // add target element
 
 	// sum x and y offsets
-	return elements.reduce(sumOffsets, {x: 0, y: 0});
+	return elements.reduce(accumulateXY, {x: 0, y: 0});
 }
 
-function sumOffsets(acc, el) {
+// accululate x and y offsets
+function accumulateXY(acc, el) {
 	acc.x += el.offsetLeft;
 	acc.y += el.offsetTop;
 	return acc;
